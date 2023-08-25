@@ -1,21 +1,20 @@
-import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Home from './Home/Home';
+import { Navigation } from './Navigation/Navigation';
+import { Movies } from './Movies/Movies';
 
 export const App = () => {
-  const [test, setTest] = useState([]);
-
-  console.log(test);
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      React homework template
+    <div>
+      <Routes>
+        <Route path={'/goit-react-hw-05-movies/'} element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route
+            path={'/goit-react-hw-05-movies/movies'}
+            element={<Movies />}
+          />
+        </Route>
+      </Routes>
     </div>
   );
 };
