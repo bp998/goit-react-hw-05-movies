@@ -35,7 +35,7 @@ export const getMovieSearch = async input => {
 
 export const getMovieDetail = async input => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${input}?language=en-US`,
+    `${BASE_URL}/movie/${input}?language=en-US`,
     options
   )
     .then(response => response.json())
@@ -47,7 +47,7 @@ export const getMovieDetail = async input => {
 
 export const getMovieCredits = async input => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${input}/credits?language=en-US`,
+    `${BASE_URL}/movie/${input}/credits?language=en-US`,
     options
   )
     .then(response => response.json())
@@ -58,7 +58,7 @@ export const getMovieCredits = async input => {
 
 export const getMovieReviews = async input => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${input}/reviews?language=en-US&page=1`,
+    `${BASE_URL}/movie/${input}/reviews?language=en-US&page=1`,
     options
   )
     .then(response => response.json())
