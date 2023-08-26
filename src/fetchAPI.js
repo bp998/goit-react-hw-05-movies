@@ -46,23 +46,29 @@ export const getMovieDetail = async input => {
 };
 
 export const getMovieCredits = async input => {
-  const response = await fetch(
-    `${BASE_URL}/movie/${input}/credits?language=en-US`,
-    options
-  )
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-  return response.cast;
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/${input}/credits?language=en-US`,
+      options
+    );
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
 };
 
 export const getMovieReviews = async input => {
-  const response = await fetch(
-    `${BASE_URL}/movie/${input}/reviews?language=en-US&page=1`,
-    options
-  )
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-  return response.results;
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/${input}/reviews?language=en-US&page=1`,
+      options
+    );
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
 };

@@ -1,16 +1,32 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 import { useEffect, useState } from 'react';
 import { getMovieDetail } from 'fetchAPI';
+import { Reviews } from 'components/Reviews/Reviews';
+import { Cast } from 'components/Cast/Cast';
+import { isVisible } from '@testing-library/user-event/dist/utils';
 
 export const MovieDetails = () => {
   const [movie, setMovie] = useState();
+  const [isCastVisible, setCastIsVisible] = useState(false);
+  const [areReviewsVisible, setReviewsAreVisible] = useState(false);
   const location = useLocation();
 
-  //   console.log(location);
-
   const movieId = location.state;
-  console.log(location.search);
+
+  const toggleCastVisible = () => {
+    setCastIsVisible(!isCastVisible);
+    if (areReviewsVisible === true) {
+      setReviewsAreVisible(false);
+    }
+  };
+
+  const toggleReviewsVisible = () => {
+    setReviewsAreVisible(!areReviewsVisible);
+    if (isCastVisible === true) {
+      setCastIsVisible(false);
+    }
+  };
 
   useEffect(() => {
     if (movieId) {
@@ -39,6 +55,14 @@ export const MovieDetails = () => {
             <p>{movie.overview}</p>
           </div>
         </div>
+        <span className={css.btn} onClick={toggleCastVisible}>
+          Cast
+        </span>
+        <span className={css.btn} onClick={toggleReviewsVisible}>
+          Reviews
+        </span>
+        <Cast movieId={movieId} isVisible={isCastVisible} />
+        <Reviews movieId={movieId} isVisible={areReviewsVisible} />
       </div>
     );
   }

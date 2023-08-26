@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-
 import { Navigation } from './Navigation/Navigation';
 import { Movies } from './pages/Movies/Movies';
 import Home from './pages/Home/Home';
+import { Reviews } from './Reviews/Reviews';
+import { Cast } from './Cast/Cast';
 
 export const App = () => {
   return (
@@ -13,6 +14,14 @@ export const App = () => {
           <Route
             path={'/goit-react-hw-05-movies/movies'}
             element={<Movies />}
+          />
+          <Route
+            path="/goit-react-hw-05-movies/movies/cast"
+            element={<Cast />}
+          />
+          <Route
+            path="/goit-react-hw-05-movies/movies/reviews"
+            element={<Reviews />}
           />
         </Route>
       </Routes>

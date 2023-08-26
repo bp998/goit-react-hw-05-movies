@@ -26,8 +26,10 @@ export const MoviesList = () => {
     }
   }, [searchParams]);
 
+  console.log(movieId);
+
   return (
-    <div className={location.search === '?' + movieId ? css.hidden : ''}>
+    <div className={location.search === `?${movieId}` ? css.hidden : ''}>
       <ul>
         {movies.map(el => (
           <Link

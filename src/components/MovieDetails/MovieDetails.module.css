@@ -9,3 +9,9 @@
 .movieCard {
   display: flex;
 }
+
+.btn {
+  margin: 20px;
+  cursor: pointer;
+  color: blue;
+}
