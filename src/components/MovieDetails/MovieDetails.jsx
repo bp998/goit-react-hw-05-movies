@@ -27,11 +27,7 @@ export const MovieDetails = () => {
 
   if (movie) {
     return (
-      <div
-        className={
-          location.search === `?redirected=true` + movieId ? '' : css.hidden
-        }
-      >
+      <div className={location.search === `?` + movieId ? '' : css.hidden}>
         <div className={css.movieCard}>
           <img
             width="300"

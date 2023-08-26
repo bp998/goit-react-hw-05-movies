@@ -16,7 +16,7 @@ export const MoviesSearch = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    if (location.search === '?redirected=true') {
+    if (location.search === '?' + movieId) {
       console.log(location.search);
     }
   }, []);
@@ -31,11 +31,7 @@ export const MoviesSearch = () => {
   };
 
   return (
-    <div
-      className={
-        location.search === `?redirected=true` + movieId ? css.hidden : ''
-      }
-    >
+    <div className={location.search === `?` + movieId ? css.hidden : ''}>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Type your movie name"

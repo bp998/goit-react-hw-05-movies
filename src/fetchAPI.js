@@ -44,3 +44,25 @@ export const getMovieDetail = async input => {
   console.log(response, typeof response);
   return response;
 };
+
+export const getMovieCredits = async input => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${input}/credits?language=en-US`,
+    options
+  )
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+  return response.cast;
+};
+
+export const getMovieReviews = async input => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${input}/reviews?language=en-US&page=1`,
+    options
+  )
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+  return response.results;
+};

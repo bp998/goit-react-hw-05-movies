@@ -32,7 +32,7 @@ export const Trending = () => {
         {trendingMovies.map(el => (
           <Link
             style={{ display: 'flex', padding: '5px' }}
-            to={`/goit-react-hw-05-movies/movies?redirected=true` + el.id}
+            to={`/goit-react-hw-05-movies/movies?` + el.id}
             key={el.id}
             state={el.id}
           >

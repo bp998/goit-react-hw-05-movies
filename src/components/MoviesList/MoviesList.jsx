@@ -27,16 +27,12 @@ export const MoviesList = () => {
   }, [searchParams]);
 
   return (
-    <div
-      className={
-        location.search === '?redirected=true' + movieId ? css.hidden : ''
-      }
-    >
+    <div className={location.search === '?' + movieId ? css.hidden : ''}>
       <ul>
         {movies.map(el => (
           <Link
             style={{ display: 'flex', padding: '5px' }}
-            to={`/goit-react-hw-05-movies/movies?redirected=true` + el.id}
+            to={`/goit-react-hw-05-movies/movies?` + el.id}
             key={el.id}
             state={el.id}
           >
