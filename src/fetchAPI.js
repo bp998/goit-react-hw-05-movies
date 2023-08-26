@@ -32,3 +32,15 @@ export const getMovieSearch = async input => {
     .catch(err => console.error(err));
   return response.results;
 };
+
+export const getMovieDetail = async input => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${input}?language=en-US`,
+    options
+  )
+    .then(response => response.json())
+    // .then(response => console.log(response))
+    .catch(err => console.error(err));
+  console.log(response, typeof response);
+  return response;
+};

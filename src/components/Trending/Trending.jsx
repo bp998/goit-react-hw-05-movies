@@ -16,6 +16,7 @@ export const Trending = () => {
       try {
         const trendingMovies = await getTrendingMovies();
         setTrendingMovies(trendingMovies);
+        console.log(trendingMovies);
       } catch (err) {
         console.log(err);
       }
@@ -31,8 +32,9 @@ export const Trending = () => {
         {trendingMovies.map(el => (
           <Link
             style={{ display: 'flex', padding: '5px' }}
-            to="/goit-react-hw-05-movies/movies?redirected=true"
+            to={`/goit-react-hw-05-movies/movies?redirected=true` + el.id}
             key={el.id}
+            state={el.id}
           >
             {el.title || el.name}
           </Link>

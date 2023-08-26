@@ -1,0 +1,11 @@
+.hidden {
+  display: none;
+}
+
+.detailsCard {
+  display: flex;
+}
+
+.movieCard {
+  display: flex;
+}

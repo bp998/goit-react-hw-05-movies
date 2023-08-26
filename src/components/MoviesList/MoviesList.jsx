@@ -7,6 +7,7 @@ export const MoviesList = () => {
   const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const movieId = location.state;
 
   const movieName = searchParams.get('movie');
 
@@ -26,10 +27,21 @@ export const MoviesList = () => {
   }, [searchParams]);
 
   return (
-    <div className={location.search === '?redirected=true' ? css.hidden : ''}>
-      <ul className={css.movieList}>
+    <div
+      className={
+        location.search === '?redirected=true' + movieId ? css.hidden : ''
+      }
+    >
+      <ul>
         {movies.map(el => (
-          <Link key={el.id}>{el.title || el.name}</Link>
+          <Link
+            style={{ display: 'flex', padding: '5px' }}
+            to={`/goit-react-hw-05-movies/movies?redirected=true` + el.id}
+            key={el.id}
+            state={el.id}
+          >
+            {el.title || el.name}
+          </Link>
         ))}
       </ul>
     </div>
