@@ -1,9 +1,15 @@
 import { getTrendingMovies } from 'fetchAPI';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export const Trending = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  //   const redirectedToNewMovie = () => {
+  //     navigate('/goit-react-hw-05-movies/movies?redirected=true');
+  //   };
 
   useEffect(() => {
     (async () => {
@@ -16,15 +22,16 @@ export const Trending = () => {
     })();
   }, []);
 
-  console.log(trendingMovies);
+  //   console.log(location);
 
   return (
-    <div>
+    <div style={{ paddingLeft: '20px' }}>
+      <h2>Trending today</h2>
       <ul>
         {trendingMovies.map(el => (
           <Link
             style={{ display: 'flex', padding: '5px' }}
-            to={() => {}}
+            to="/goit-react-hw-05-movies/movies?redirected=true"
             key={el.id}
           >
             {el.title || el.name}
