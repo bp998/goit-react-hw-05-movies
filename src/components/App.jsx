@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import Home from './Home/Home';
+
 import { Navigation } from './Navigation/Navigation';
-import { Movies } from './Movies/Movies';
+import { Movies } from './pages/Movies/Movies';
+import Home from './pages/Home/Home';
 
 export const App = () => {
   return (
