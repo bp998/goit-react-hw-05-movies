@@ -6,13 +6,10 @@ import { getMovieSearch } from 'fetchAPI';
 export const MoviesList = () => {
   const location = useLocation();
   const [movies, setMovies] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const movieId = location.state;
 
   const movieName = searchParams.get('movie');
-  if (movieName === 0) {
-    setSearchParams(null);
-  }
 
   useEffect(() => {
     if (movieName) {
