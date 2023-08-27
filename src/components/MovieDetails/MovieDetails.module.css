@@ -4,14 +4,27 @@
 
 .detailsCard {
   display: flex;
+  flex-direction: column;
 }
 
 .movieCard {
   display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .btn {
   margin: 20px;
   cursor: pointer;
   color: blue;
+}
+
+.goBackButton {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: wheat;
+  cursor: ⬅;
+  font-size: 15px;
 }

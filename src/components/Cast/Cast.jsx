@@ -11,16 +11,12 @@ export const Cast = props => {
         try {
           const response = await getMovieCredits(movieId);
           setMovieInfo(response.cast);
-          // console.log(movieInfo, 'response log');
         } catch (err) {
           console.log(err, 'error w useEffect');
         }
       })();
     }
   }, [isVisible, movieId]);
-
-  console.log(isVisible, 'isVisible cast');
-  console.log(movieInfo.length, 'movieInfo.lenght cast');
 
   return (
     <div>

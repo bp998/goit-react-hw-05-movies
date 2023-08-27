@@ -1,16 +1,17 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 import { useEffect, useState } from 'react';
 import { getMovieDetail } from 'fetchAPI';
 import { Reviews } from 'components/Reviews/Reviews';
 import { Cast } from 'components/Cast/Cast';
-import { isVisible } from '@testing-library/user-event/dist/utils';
+import No_image_poster from 'No_image_poster.png';
 
 export const MovieDetails = () => {
   const [movie, setMovie] = useState();
   const [isCastVisible, setCastIsVisible] = useState(false);
   const [areReviewsVisible, setReviewsAreVisible] = useState(false);
   const location = useLocation();
+  const navigation = useNavigate();
 
   const movieId = location.state;
 
@@ -26,6 +27,12 @@ export const MovieDetails = () => {
     if (isCastVisible === true) {
       setCastIsVisible(false);
     }
+  };
+
+  const goBack = () => {
+    setCastIsVisible(false);
+    setReviewsAreVisible(false);
+    navigation(-1);
   };
 
   useEffect(() => {
@@ -44,14 +51,26 @@ export const MovieDetails = () => {
   if (movie) {
     return (
       <div className={location.search === `?` + movieId ? '' : css.hidden}>
+        <button className={css.goBackButton} onClick={goBack}>
+          ⬅ Go back
+        </button>
         <div className={css.movieCard}>
           <img
             width="300"
             alt={movie.title}
-            src={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500` + movie.poster_path
+                : `${No_image_poster}`
+            }
           ></img>
           <div className={css.detailsCard}>
             <h3>{movie.original_title}</h3>
+            <span>
+              User Score:{' '}
+              {`${movie.vote_average.toFixed(1) * 10}% positive feedback`}
+            </span>
+            <p className={css.overview}>Overview</p>
             <p>{movie.overview}</p>
           </div>
         </div>

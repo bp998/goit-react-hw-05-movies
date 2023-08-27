@@ -3,15 +3,16 @@ import { useEffect, useState } from 'react';
 
 export const Reviews = props => {
   const [movieInfo, setMovieInfo] = useState([]);
-
   const { isVisible, movieId } = props;
+
+  useEffect(() => {});
 
   useEffect(() => {
     if (isVisible) {
       (async () => {
         try {
           const response = await getMovieReviews(movieId);
-          // console.log(response, 'response log');
+
           setMovieInfo(response.results);
         } catch (err) {
           console.log(err, 'error w useEffect');
@@ -19,9 +20,6 @@ export const Reviews = props => {
       })();
     }
   }, [isVisible, movieId]);
-
-  console.log(movieInfo.length);
-  console.log(isVisible, 'isVisible');
 
   return (
     <div>

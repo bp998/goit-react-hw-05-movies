@@ -17,7 +17,6 @@ export const getTrendingMovies = async () => {
     options
   )
     .then(response => response.json())
-    // .then(response => console.log(response))
     .catch(err => console.error(err));
   return response.results;
 };
@@ -28,7 +27,6 @@ export const getMovieSearch = async input => {
     options
   )
     .then(response => response.json())
-    // .then(response => console.log(response))
     .catch(err => console.error(err));
   return response.results;
 };
@@ -39,9 +37,7 @@ export const getMovieDetail = async input => {
     options
   )
     .then(response => response.json())
-    // .then(response => console.log(response))
     .catch(err => console.error(err));
-  console.log(response, typeof response);
   return response;
 };
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import css from './MoviesSearch.module.css';
 
@@ -8,19 +8,6 @@ export const MoviesSearch = () => {
   const location = useLocation();
   const movieId = location.state;
 
-  useEffect(() => {
-    const search = searchParams.get('movie');
-    if (search) {
-      console.log(search);
-    }
-  }, [searchParams]);
-
-  useEffect(() => {
-    if (location.search === '?' + movieId) {
-      console.log(location.search);
-    }
-  }, []);
-
   const handleChange = e => {
     setInput(e.target.value);
   };
@@ -28,19 +15,23 @@ export const MoviesSearch = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     setSearchParams({ movie: input.toLocaleLowerCase() });
+    if (searchParams > 0) {
+      return;
+    }
   };
 
   return (
     <div className={location.search === `?` + movieId ? css.hidden : ''}>
-      <form onSubmit={handleSubmit}>
+      <form className={css.searchForm} onSubmit={handleSubmit}>
         <input
+          className={css.input}
           placeholder="Type your movie name"
           type="text"
           value={input}
           onChange={handleChange}
         />
-        <button onClick={e => {}} type="submit">
-          Click to search
+        <button className={css.button} onClick={e => {}} type="submit">
+          🔍
         </button>
       </form>
     </div>

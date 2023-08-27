@@ -22,7 +22,7 @@ export const MoviesList = () => {
         }
       })();
     }
-  }, [searchParams]);
+  }, [movieName]);
 
   return (
     <div className={location.search === `?${movieId}` ? css.hidden : ''}>
