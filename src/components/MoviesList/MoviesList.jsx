@@ -10,6 +10,9 @@ export const MoviesList = () => {
   const movieId = location.state;
 
   const movieName = searchParams.get('movie');
+  if (movieName === 0) {
+    setSearchParams(null);
+  }
 
   useEffect(() => {
     if (movieName) {
