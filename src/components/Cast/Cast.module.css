@@ -1,0 +1,27 @@
+.castCard {
+  padding: 50px;
+}
+
+.castList {
+}
+
+.castTitle {
+  font-size: 30px;
+  margin-top: 0;
+  padding-top: 5px;
+  border-top: 1px solid black;
+}
+
+.castList {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.listItem {
+  list-style-type: none;
+}
+
+.actorName {
+  font-weight: 700;
+}

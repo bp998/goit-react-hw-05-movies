@@ -8,6 +8,7 @@ import No_image_poster from 'No_image_poster.png';
 
 export const MovieDetails = () => {
   const [movie, setMovie] = useState();
+  const [movieAverage, setMovieAverage] = useState();
   const [isCastVisible, setCastIsVisible] = useState(false);
   const [areReviewsVisible, setReviewsAreVisible] = useState(false);
   const location = useLocation();
@@ -65,21 +66,38 @@ export const MovieDetails = () => {
             }
           ></img>
           <div className={css.detailsCard}>
-            <h3>{movie.original_title}</h3>
-            <span>
-              User Score:{' '}
-              {`${movie.vote_average.toFixed(1) * 10}% positive feedback`}
+            <h3 className={css.title}>{movie.original_title}</h3>
+            <span className={css.userScore}>
+              User Score:
+              {movie.vote_average > 0
+                ? ` ${movie.vote_average.toFixed(1) * 10}% positive feedback`
+                : null}
             </span>
             <p className={css.overview}>Overview</p>
-            <p>{movie.overview}</p>
+            <p className={css.overviewText}>{movie.overview}</p>
+            <div className={css.genresCard}>
+              <p className={css.genres}>Genres:</p>
+              <ul className={css.genresList}>
+                {movie.genres.length > 0
+                  ? movie.genres.map(el => (
+                      <span key={el.id} className={css.genre}>
+                        {el.name}
+                      </span>
+                    ))
+                  : null}
+              </ul>
+            </div>
           </div>
         </div>
-        <span className={css.btn} onClick={toggleCastVisible}>
-          Cast
-        </span>
-        <span className={css.btn} onClick={toggleReviewsVisible}>
-          Reviews
-        </span>
+        <div className={css.additionalCard}>
+          <p>Additional informations</p>
+          <span className={css.btn} onClick={toggleCastVisible}>
+            Cast
+          </span>
+          <span className={css.btn} onClick={toggleReviewsVisible}>
+            Reviews
+          </span>
+        </div>
         <Cast movieId={movieId} isVisible={isCastVisible} />
         <Reviews movieId={movieId} isVisible={areReviewsVisible} />
       </div>
