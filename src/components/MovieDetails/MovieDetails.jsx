@@ -8,7 +8,6 @@ import No_image_poster from 'No_image_poster.png';
 
 export const MovieDetails = () => {
   const [movie, setMovie] = useState();
-  const [movieAverage, setMovieAverage] = useState();
   const [isCastVisible, setCastIsVisible] = useState(false);
   const [areReviewsVisible, setReviewsAreVisible] = useState(false);
   const location = useLocation();
