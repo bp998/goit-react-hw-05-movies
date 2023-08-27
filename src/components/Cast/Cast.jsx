@@ -2,7 +2,7 @@ import { getMovieCredits } from 'fetchAPI';
 import { useEffect, useState } from 'react';
 
 export const Cast = props => {
-  const [movie, setMovie] = useState([]);
+  const [movieInfo, setMovieInfo] = useState([]);
   const { isVisible, movieId } = props;
 
   useEffect(() => {
@@ -10,8 +10,8 @@ export const Cast = props => {
       (async () => {
         try {
           const response = await getMovieCredits(movieId);
-          setMovie(response.cast);
-          console.log(movie, 'response log');
+          setMovieInfo(response.cast);
+          // console.log(movieInfo, 'response log');
         } catch (err) {
           console.log(err, 'error w useEffect');
         }
@@ -19,15 +19,18 @@ export const Cast = props => {
     }
   }, [isVisible, movieId]);
 
-  console.log(isVisible, 'cast');
+  console.log(isVisible, 'isVisible cast');
+  console.log(movieInfo.length, 'movieInfo.lenght cast');
 
   return (
     <div>
       <div>
         {isVisible
-          ? movie.map(el => <li key={el.id}>{el.character}</li>)
+          ? movieInfo.map(el => <li key={el.id}>{el.character}</li>)
           : null}
-        {movie === [] ? <div>There is no cast</div> : null}
+        {isVisible && movieInfo.length === 0 ? (
+          <p>There is no information about cast</p>
+        ) : null}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { getMovieReviews } from 'fetchAPI';
 import { useEffect, useState } from 'react';
 
 export const Reviews = props => {
-  const [movie, setMovie] = useState([]);
+  const [movieInfo, setMovieInfo] = useState([]);
 
   const { isVisible, movieId } = props;
 
@@ -11,8 +11,8 @@ export const Reviews = props => {
       (async () => {
         try {
           const response = await getMovieReviews(movieId);
-          console.log(response, 'response log');
-          setMovie(response.results);
+          // console.log(response, 'response log');
+          setMovieInfo(response.results);
         } catch (err) {
           console.log(err, 'error w useEffect');
         }
@@ -20,13 +20,13 @@ export const Reviews = props => {
     }
   }, [isVisible, movieId]);
 
-  console.log(movie);
-  console.log(isVisible, 'reviews');
+  console.log(movieInfo.length);
+  console.log(isVisible, 'isVisible');
 
   return (
     <div>
-      {isVisible ? movie.map(el => <li key={el.id}>{el.author}</li>) : null}
-      <div> {movie.length === [] ? <p>There is no reviews</p> : null} </div>
+      {isVisible ? movieInfo.map(el => <li key={el.id}>{el.author}</li>) : null}
+      {isVisible && movieInfo.length === 0 ? <p>There is no reviews</p> : null}
     </div>
   );
 };

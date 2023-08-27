@@ -12,21 +12,17 @@ export const MoviesList = () => {
   const movieName = searchParams.get('movie');
 
   useEffect(() => {
-    if (movieName === null) return;
-    else {
+    if (movieName) {
       (async () => {
         try {
           const response = await getMovieSearch(movieName);
           setMovies(response);
-          console.log(response);
         } catch (err) {
           console.log(err);
         }
       })();
     }
   }, [searchParams]);
-
-  console.log(movieId);
 
   return (
     <div className={location.search === `?${movieId}` ? css.hidden : ''}>
