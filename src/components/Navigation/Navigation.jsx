@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import css from './Navigation.module.css';
+import { Suspense } from 'react';
 
 export const Navigation = () => {
   return (
@@ -12,7 +13,9 @@ export const Navigation = () => {
           Movies
         </NavLink>
       </div>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
