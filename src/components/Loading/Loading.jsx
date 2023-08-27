@@ -2,7 +2,7 @@ import css from './Loading.module.css';
 
 const Loading = () => {
   return (
-    <div className={css.loading}>
+    <div>
       <p className={css.loadingText}>Loading...</p>
     </div>
   );
